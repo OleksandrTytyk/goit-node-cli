@@ -10,13 +10,10 @@ async function listContacts() {
 }
 
 async function getContactById(contactId) {
-  // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
   const contact = contacts.find((contact) => contact.id === contactId);
   if (!contact) return null;
   return contact;
 }
-
-console.log("contact:", getContactById("Z5sbDlS7pCzNsnAHLtDJd"));
 
 async function removeContact(contactId) {
   const index = contacts.findIndex((contact) => contact.id === contactId);
@@ -25,8 +22,6 @@ async function removeContact(contactId) {
   contacts.splice(index, 1);
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return removedContact;
-
-  // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
 }
 
 async function addContact(name, email, phone) {
@@ -39,12 +34,6 @@ async function addContact(name, email, phone) {
   contacts.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return newContact;
-  // ...твій код. Повертає об'єкт доданого контакту (з id).
 }
 
-export default {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-};
+export { listContacts, getContactById, removeContact, addContact };
